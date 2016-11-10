@@ -3,6 +3,8 @@
 - I don't have access to a device to test imports on, so let me know errors please
 
 ##usage:
-$ cat input.rules | python ./convert.py
+  ```$ cat input.rules | python ./convert.py```
+    
 or
-$ pyton ./convert.py input.rules
+
+  ```$ pyton ./convert.py input.rules```
