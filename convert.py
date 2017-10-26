@@ -18,13 +18,14 @@ import sys
 import string
 
 outfile = './converted.rules'
+verbose = True
 export_sigs = []
 # {'conversion_name':[re.object, 'replacement txt']}
-conversions = {'1':['http_raw','http'], \
-               '2':['threshold:','detection_filter:'], \
-               '3':['type limit,',''], \
-               '4':['type threshold,',''], \
-               '5':['type both,',''] \
+conversions = {'remove_http_raw':['http_raw','http'], \
+               'thresh_to_detection_filter':['threshold:','detection_filter:'], \
+               '3_thresh_to_detection_filter':['type limit,',''], \
+               '4_thresh_to_detection_filter':['type threshold,',''], \
+               '5_thresh_to_detection_filter':['type both,',''] \
                }
 
 def load_disablesids(disablesid_list = []):
@@ -42,7 +43,8 @@ def main():
     disablesids = load_disablesids()
     for line in fileinput.input():
         if line[0] == '#':
-            print 'skipping disabled rule: ' + line[0] 
+            if verbose: print 'skipping disabled rule: ' + line[0] 
+            continue
         elif line[0] == '\n':
             continue
         tmp = line
@@ -50,7 +52,7 @@ def main():
         for key, value in conversions.iteritems():
             if value[0] in tmp:
                 tmp = string.replace(tmp, value[0], value[1])
-                print 'found conversion %s in %s' % (value[0], get_sid(tmp))
+                if verbose: print 'found conversion %s in %s' % (key, get_sid(tmp))
         export_sigs.append(tmp)
 
     with open(outfile,'w') as f:
