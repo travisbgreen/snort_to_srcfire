@@ -4,7 +4,7 @@ script to dl current ET OPEN rules, if you are a pro subcriber, simply edit url 
 '''
 import urllib2
 
-url = 'https://rules.emergingthreats.net/open/snort-2.9.0-enhanced/rules/emerging-current_events.rules'
+url = 'https://rules.emergingthreats.net/open/snort-2.9.0/emerging-all.rules'
 #oinkcode = "123456"
 #url = 'http://rules.emergingthreatspro.com/' + oinkcode + '/snort-2.9.0-enhanced/rules/emerging-current_events.rules'
 
